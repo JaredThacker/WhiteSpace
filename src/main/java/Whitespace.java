@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Whitespace {
 
@@ -11,16 +13,26 @@ public class Whitespace {
         // read in all the text and
         // send it to countBoth
 
+
         wspc.countBoth("a b c d e"); // should print 4, 5
 
     }
 
     private void countBoth(String testdata) {
 
-        // count the number of whitepace chars and non-whitspace chars.
+        Pattern p = Pattern.compile("\\s");
+        Matcher m = p.matcher(testdata);
+        long whiteSpaceCount = m.results().count();
+
+        Pattern p2 = Pattern.compile("\\S");
+        Matcher m2 = p2.matcher(testdata);
+        long nonWhiteSpace = m2.results().count();
+
+        // count the number of whitespace chars and non-whitespace chars.
         // need to use a FOR loop.
         // print the results simply on a line #whitespaces, #ofnonwhitespacechars for each file.
 
+        System.out.printf("%d, %d\n",whiteSpaceCount, nonWhiteSpace );
     }
 
 
